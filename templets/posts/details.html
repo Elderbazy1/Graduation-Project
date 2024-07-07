@@ -1,0 +1,122 @@
+{% extends 'pase.html' %}
+{% load static %}
+{% block contant %}
+
+
+        <!-- Details -->
+        <div class="container-fluid mt-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Product Title -->
+                    <h1>{{ post.titel }}</h1>
+
+                    <!-- Product Description -->
+                    <p>{{ post.Description|safe }}</p>
+
+                    <p class="card-text">
+                        Publish Date : <small class="text-muted">{{ post.publish_date }}</small> &nbsp;
+                        Category : <small class="text-muted">{{ post.Category_id }}</small> &nbsp;
+                        Price : <small class="text-muted">{{ post.Price }}</small> &nbsp;
+                        view : <small class="text-muted">{{ post.vie_count }}</small> &nbsp;
+                        like : <small class="text-muted">{{ post.likes_count }}</small> &nbsp;
+                        Dislike : <small class="text-muted">{{ post.dislikes_count }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- end details -->
+
+
+    <!-- Comments  -->
+<div class="container-fluid mt-5">
+    <h3>Comments</h3>
+    {% for com in post.comment_set.all %}
+    <div class="media mt-4">
+            <img src="{{ com.auther.profile.userimage.url }}" class="mr-3 rounded-circle" alt="User 2" style="width: 50px; height: 50px;">
+            <div class="media-body">
+                <h5 class="mt-0">{{ com.auther.username}}</h5>
+                <p>{{ com.text }}</p>
+
+                {%  if com.auther == request.user%}
+                    <a href="{% url 'deletecomment' delete_comment=com.id %}" class="btn btn-outline-danger">Delete</a>
+                {% endif %}
+                <!-- Replies Display Section -->
+                {% for reply in com.replay_set.all %}
+                    <div class="media mt-3">
+                        <!-- Reply details -->
+                        <img src="{{ reply.auther.profile.userimage.url }}" class="mr-3 rounded-circle" alt="User 2" style="width: 50px; height: 50px;">
+                        <div class="media-body">
+                            <h5 class="mt-0">{{ reply.auther.username }}</h5>
+                            <p>{{ reply.text }}</p>
+
+                            {% if reply.auther ==  request.user %}
+                                <a href="{% url 'deletereplay' replay_id=reply.id %}" class="btn btn-outline-danger">Delete</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                {% endfor %}
+
+                    <!-- Reply Submission Form for Top-Level Comments -->
+                <form method="POST" action = {% url 'reaplaycommnet' comment_id=com.id %} >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="userReply">Your Reply</label>
+                        <textarea class="form-control" id="userReply" name="userReply" rows="2" placeholder="Enter your reply"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-outline-info">Reply</button>
+                </form>
+
+            </div>
+    </div>
+    {% endfor %}
+
+    <!-- Comment Submission Form -->
+    <h3 class="mt-5">Add a Comment</h3>
+    <form method="POST" action="{% url 'addcomment' addcomment=post.id %}">
+        {%  csrf_token %}
+        <div class="form-group">
+            <label for="userComment">Your Comment</label>
+            <textarea class="form-control" id="userComment" name="userComment" rows="4" placeholder="Enter your comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-info">Submit</button>
+    </form>
+</div>
+    <!-- end Comments  -->
+
+    <!-- Related products -->
+
+<div class="container-fluid mt-5">
+    <h3>Related Products</h3>
+    <div class="row">
+        <!-- Related Product Cards (You can create product cards as needed) -->
+        {% for related_product in related_products  %}
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                    <div class="card-body">
+                           <!-- User Information -->
+                           <div class="d-flex align-items-center mb-3">
+                              <img src="{{ related_product.auther.profile.userimage.url }}" alt="User Image rounded-circle" class="img-fluid rounded-circle" style="width: 30px; height: 30px;">
+                              <p class="user-name ml-2 mb-0">{{ related_product.auther.username }}</p>
+                           </div>
+
+                            <!-- Product Details -->
+                           <h5 class="card-title">{{ related_product.titel}}</h5>
+
+                            <!-- Publication Date and Category -->
+                           <p class="card-text"><small class="text-muted">Published on : {{related_product.publish_date}}</small></p>
+                           <p class="card-text"><small class="text-muted">Category: {{related_product.Category_id}}</small></p>
+                           <p class="card-text"><small class="text-muted">Prise: {{related_product.Price}} </small></p>
+                                    <!-- Buy Now Button -->
+                           <a href="{% url 'showpost' show=post.id %}" class="btn btn-outline-info">Show Now</a>
+                       </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Add more related product cards here -->
+    </div>
+</div>
+
+
+
+{% endblock %}

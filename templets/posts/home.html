@@ -1,0 +1,80 @@
+{% extends 'pase.html' %}
+{% load static %}
+{% block contant %}
+
+        <!-- content -->
+
+    {% if user.is_authenticated %}
+    <div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3  p-4">
+            <form method="GET" action="{% url 'search' %}" class="mt-4 mb-4">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input type="text" class="form-control" name="Search" placeholder="Search for products">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-info" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <h4>Categories</h4>
+            <ul class="list-unstyled category-list">
+                {%  for cato in catogary %}
+                    <a href="{% url 'showcatogry' catogery_id=cato.id%}">
+                        <li class="mb-2 pb-2 border-bottom text-dark">{{ cato.name}}</li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Product Cards -->
+        <div class="col-md-9 p-4">
+
+            <div class="row">
+                {% for post in posts %}
+                <div class="col-md-12 mb-4">
+                    <div class="card">
+                       <div class="card-body">
+                           <!-- User Information -->
+                           <div class="d-flex align-items-center mb-3">
+                              <img src="{{post.auther.profile.userimage.url}}" alt="User Image rounded-circle" class="img-fluid rounded-circle" style="width: 30px; height: 30px;">
+                              <a href="{% url 'showuser' name=post.auther.username %}" class="user-name ml-2 mb-0 text-dark">{{ post.auther.username }}</a>
+                           </div>
+
+                            <!-- Product Details -->
+                           <h5 class="card-title">{{post.titel}}</h5>
+
+                           <p class="card-text">
+                                Publish Date : <small class="text-muted">{{ post.publish_date }}</small> &nbsp;
+                                Category : <small class="text-muted">{{ post.Category_id }}</small> &nbsp;
+                                Price : <small class="text-muted">{{ post.Price }}</small> &nbsp;
+                                view : <small class="text-muted">{{ post.vie_count }}</small> &nbsp;
+                                like : <small class="text-muted">{{ post.likes_count }}</small> &nbsp;
+                                Dislike : <small class="text-muted">{{ post.dislikes_count }}</small>
+                            </p>
+                           <!-- Buy Now Button -->
+                           <a href="{% url 'showpost' show=post.id %}" class="btn btn-outline-info">Show Now</a>
+
+                           <a href="{% url 'like_dislike_post' post.id 'l' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+                            </svg></a>
+                                <!-- Dislike button -->
+                           <a href="{% url 'like_dislike_post' post.id 'dislike' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                            </svg></a>
+                       </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- Add more product cards here -->
+            </div>
+        </div>
+    </div>
+</div>
+    {% endif %}
+
+    <!-- end content -->
+{% endblock %}
+

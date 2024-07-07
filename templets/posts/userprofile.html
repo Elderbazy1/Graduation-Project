@@ -1,0 +1,51 @@
+{% extends 'pase.html' %}
+{% load static %}
+{% block contant %}
+
+    <div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3  p-4">
+            <div class="d-flex align-items-center mb-3">
+               <img src="{{ posts.0.auther.profile.userimage.url}}" alt="User Image rounded-circle" class="img-fluid " style="width: 700px; height: 200px;">
+            </div>
+
+        </div>
+
+        <!-- Product Cards -->
+        <div class="col-md-9 p-4">
+
+            <div class="row">
+                <!-- Product Card 1 -->
+                {% for post in posts %}
+                    <div class="col-md-12 mb-4">
+                    <div class="card">
+                       <div class="card-body">
+                           <!-- User Information -->
+                           <div class="d-flex align-items-center mb-3">
+                              <img src="{{ post.auther.profile.userimage.url}}" alt="User Image rounded-circle" class="img-fluid rounded-circle" style="width: 30px; height: 30px;">
+                              <p class="user-name ml-2 mb-0">{{ post.auther.username }}</p>
+                           </div>
+
+                           <!-- Product Details -->
+                           <h5 class="card-title">{{post.titel}}</h5>
+                           <p class="card-text">
+                                Publish Date : <small class="text-muted">{{ post.publish_date }}</small> &nbsp;
+                                Category : <small class="text-muted">{{ post.Category_id }}</small> &nbsp;
+                                Price : <small class="text-muted">{{ post.Price }}</small> &nbsp;
+                                view : <small class="text-muted">{{ post.vie_count }}</small> &nbsp;
+                                like : <small class="text-muted">{{ post.likes_count }}</small> &nbsp;
+                                Dislike : <small class="text-muted">{{ post.dislikes_count }}</small>
+                            </p>
+                           <!-- Buy Now Button -->
+                           <a href="{% url 'showpost' show=post.id %}" class="btn btn-outline-info">Show Now</a>
+                       </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <!-- Add more product cards here -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
