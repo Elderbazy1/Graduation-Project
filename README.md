@@ -4,15 +4,15 @@ My diploma project is the development and implementation of a website designed f
 Goal and objectives:
 
 
-Create a secure website and protect it from attacks.
+-Create a secure website and protect it from attacks.
 
-Ensure the ability to publish messages and comments.
+-Ensure the ability to publish messages and comments.
 
-Introduce a private messaging system with encryption to ensure confidentiality.
+-Introduce a private messaging system with encryption to ensure confidentiality.
 
-Develop an administrative panel for managing users and monitoring activity.
+-Develop an administrative panel for managing users and monitoring activity.
 
-Protect the website in accordance with Federal Law No. 149-FZ
+-Protect the website in accordance with Federal Law No. 149-FZ
 
 
 ![image](https://github.com/Elderbazy1/Graduation-Project/assets/129333030/44e8144e-fe3f-431d-b01b-3713ce007605)
@@ -21,17 +21,17 @@ Protect the website in accordance with Federal Law No. 149-FZ
 Admin Page
 
 
-The admin page allows you to monitor and control all activities on the site.
+-The admin page allows you to monitor and control all activities on the site.
 
-The administrator has the following rights:
+-The administrator has the following rights:
 
-Delete any posts and comments
+-Delete any posts and comments
 
-Delete users
+-Delete users
 
-Monitor all activity on the site
+-Monitor all activity on the site
 
-This panel provides full control over content and users, helping to maintain order and security on the site.
+-This panel provides full control over content and users, helping to maintain order and security on the site.
 
 
 
@@ -40,11 +40,11 @@ This panel provides full control over content and users, helping to maintain ord
 
 Private Messages:
 
-Users can send private messages to each other in a private chat.
+-Users can send private messages to each other in a private chat.
 
-Each private message is visible only to the sender and recipient, making communication private.
+-Each private message is visible only to the sender and recipient, making communication private.
 
-Modern encryption algorithms are used to ensure the privacy of messages between users. This includes AES, the Advanced Encryption Standard.
+-Modern encryption algorithms are used to ensure the privacy of messages between users. This includes AES, the Advanced Encryption Standard.
 
 
 ![image](https://github.com/Elderbazy1/Graduation-Project/assets/129333030/5e41c1a5-5e07-462b-a9a9-49cdfa45d8dc)
@@ -65,21 +65,21 @@ Administrator: full access to all functions and settings of the site, including 
 Tools used to protect the site
 
 
-Encrypt passwords and databases
+-Encrypt passwords and databases
 
-Encryption of messages between participants
+-Encryption of messages between participants
 
-Protection against Man-in-the-Middle attacks
+-Protection against Man-in-the-Middle attacks
 
-Encryption of databases and passwords
+-Encryption of databases and passwords
 
-Applied methods of password hashing and protection against leaks
+-Applied methods of password hashing and protection against leaks
 
-Protection against vulnerabilities
+-Protection against vulnerabilities
 
-Cross-site scripting (XSS)
+-Cross-site scripting (XSS)
 
-SQL injection
+-SQL injection
 
-Cross-site request forgery (CSRF)
+-Cross-site request forgery (CSRF)
 
