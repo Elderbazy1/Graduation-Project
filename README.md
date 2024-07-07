@@ -52,8 +52,10 @@ Modern encryption algorithms are used to ensure the privacy of messages between 
 
 A login and password are used to authenticate users. Users must enter their credentials to access the system. Passwords are stored encrypted using the bcrypt algorithm, which guarantees their security.
 Access Management
+
 Access to different parts of the site is limited based on user roles. The following roles have been implemented in the system:
 User: access to the main functions of the site.
+
 Administrator: full access to all functions and settings of the site, including management of content created by users.
 
 
@@ -61,13 +63,23 @@ Administrator: full access to all functions and settings of the site, including 
 
 
 Tools used to protect the site
+
+
 Encrypt passwords and databases
+
 Encryption of messages between participants
+
 Protection against Man-in-the-Middle attacks
+
 Encryption of databases and passwords
+
 Applied methods of password hashing and protection against leaks
+
 Protection against vulnerabilities
+
 Cross-site scripting (XSS)
+
 SQL injection
+
 Cross-site request forgery (CSRF)
 
